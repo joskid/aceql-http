@@ -1,4 +1,4 @@
-# AceQL HTTP v3.2.2 - September 16, 2019
+# AceQL HTTP v4.0 - December 27, 2019
 
 # API User Guide
 
@@ -167,9 +167,9 @@ When an error occurs:
 
 Allows you to create a new session, authenticate on remote AceQL server, and connect to a remote SQL database.
 
-| URL  Format                                                 |
-| ----------------------------------------------------------- |
-| `server/aceql/database/{database}/username/{username}/login |
+| URL  Format                                                  |
+| ------------------------------------------------------------ |
+| `server/aceql/database/{database}/username/{username}/login` |
 
 Note that we will use two shortcuts through this User Guide in order to simplify the URL format:
 
