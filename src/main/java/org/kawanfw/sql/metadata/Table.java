@@ -58,13 +58,6 @@ public class Table {
     private String tableType = null;
     private String remarks = null;
 
-      // No! Not implemented
-//    private String typeCatalog = null;
-//    private String typeSchema= null;
-//    private String typeName = null;
-//    private String selfReferencingColName = null;
-//    private String refGeneration = null;
-
     private List<Column> columns = null;
     private List<PrimaryKey> primaryKeys = null;
     private List<Index> indexes = null;
