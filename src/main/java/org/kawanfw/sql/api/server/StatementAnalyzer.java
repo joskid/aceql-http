@@ -47,7 +47,7 @@ import net.sf.jsqlparser.statement.Statement;
  * <li>Says if a parsedStatement contains SQL comments.</li>
  * <li>Says if a parsedStatement contains semicolons (parsedStatement separator) that are
  * not trailing.</li>
- * <li>Extract the parsed Statement type:
+ * <li>Extract the parsed Statement name:
  * <code>DELETE / INSERT / SELECT / UPDATE, CREATE / ALTER / DROP...</code></li>
  * <li>Says if the parsed Statement is a DML parsedStatement (exclusively:
  * <code>DELETE / INSERT / SELECT / UPDATE</code>).</li>
@@ -222,7 +222,7 @@ public class StatementAnalyzer {
     /**
      * Extract the parsed Statement name from a SQL order.
      *
-     * @return the parsed Statement type: <code>DELETE, INSERT, SELECT, UPDATE,</code>
+     * @return the parsed Statement name: <code>DELETE, INSERT, SELECT, UPDATE,</code>
      *         etc...
      */
     public String getStatementName() {
