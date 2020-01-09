@@ -506,7 +506,7 @@ public class TomcatStarterUtil {
 		ServletParametersStore.setSqlFirewallClassNames(database, sqlFirewallClassNames);
 	    }
 	    else {
-		ServletParametersStore.setSqlFirewallClassNames(database, new ArrayList<>());
+		ServletParametersStore.setSqlFirewallClassNames(database, new ArrayList<String>());
 	    }
 	}
 

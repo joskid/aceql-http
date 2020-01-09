@@ -37,21 +37,19 @@ public class JdbcDatabaseMetaData {
 
     public static boolean DEBUG = false;
 
-    private String status = "OK";
-
-    private java.lang.String getURL;
+    private String getURL;
     private boolean isReadOnly;
     private boolean allProceduresAreCallable;
     private boolean allTablesAreSelectable;
-    private java.lang.String getUserName;
+    private String getUserName;
     private boolean nullsAreSortedHigh;
     private boolean nullsAreSortedLow;
     private boolean nullsAreSortedAtStart;
     private boolean nullsAreSortedAtEnd;
-    private java.lang.String getDatabaseProductName;
-    private java.lang.String getDatabaseProductVersion;
-    private java.lang.String getDriverName;
-    private java.lang.String getDriverVersion;
+    private String getDatabaseProductName;
+    private String getDatabaseProductVersion;
+    private String getDriverName;
+    private String getDriverVersion;
     private int getDriverMajorVersion;
     private int getDriverMinorVersion;
     private boolean usesLocalFiles;
@@ -64,14 +62,14 @@ public class JdbcDatabaseMetaData {
     private boolean storesUpperCaseQuotedIdentifiers;
     private boolean storesLowerCaseQuotedIdentifiers;
     private boolean storesMixedCaseQuotedIdentifiers;
-    private java.lang.String getIdentifierQuoteString;
-    private java.lang.String getSQLKeywords;
-    private java.lang.String getNumericFunctions;
-    private java.lang.String getStringFunctions;
-    private java.lang.String getSystemFunctions;
-    private java.lang.String getTimeDateFunctions;
-    private java.lang.String getSearchStringEscape;
-    private java.lang.String getExtraNameCharacters;
+    private String getIdentifierQuoteString;
+    private String getSQLKeywords;
+    private String getNumericFunctions;
+    private String getStringFunctions;
+    private String getSystemFunctions;
+    private String getTimeDateFunctions;
+    private String getSearchStringEscape;
+    private String getExtraNameCharacters;
     private boolean supportsAlterTableWithAddColumn;
     private boolean supportsAlterTableWithDropColumn;
     private boolean supportsColumnAliasing;
@@ -98,11 +96,11 @@ public class JdbcDatabaseMetaData {
     private boolean supportsOuterJoins;
     private boolean supportsFullOuterJoins;
     private boolean supportsLimitedOuterJoins;
-    private java.lang.String getSchemaTerm;
-    private java.lang.String getProcedureTerm;
-    private java.lang.String getCatalogTerm;
+    private String getSchemaTerm;
+    private String getProcedureTerm;
+    private String getCatalogTerm;
     private boolean isCatalogAtStart;
-    private java.lang.String getCatalogSeparator;
+    private String getCatalogSeparator;
     private boolean supportsSchemasInDataManipulation;
     private boolean supportsSchemasInProcedureCalls;
     private boolean supportsSchemasInTableDefinitions;
@@ -167,7 +165,6 @@ public class JdbcDatabaseMetaData {
     private int getSQLStateType;
     private boolean locatorsUpdateCopy;
     private boolean supportsStatementPooling;
-    private java.sql.RowIdLifetime getRowIdLifetime;
     private boolean supportsStoredFunctionsUsingCallSyntax;
     private boolean autoCommitFailureClosesAllResultSets;
     private int getResultSetHoldability;
@@ -284,8 +281,7 @@ public class JdbcDatabaseMetaData {
 	}
 
 	try {
-	    supportsMixedCaseIdentifiers = wrapper
-		    .supportsMixedCaseIdentifiers();
+	    supportsMixedCaseIdentifiers = wrapper.supportsMixedCaseIdentifiers();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
@@ -309,29 +305,25 @@ public class JdbcDatabaseMetaData {
 	}
 
 	try {
-	    supportsMixedCaseQuotedIdentifiers = wrapper
-		    .supportsMixedCaseQuotedIdentifiers();
+	    supportsMixedCaseQuotedIdentifiers = wrapper.supportsMixedCaseQuotedIdentifiers();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    storesUpperCaseQuotedIdentifiers = wrapper
-		    .storesUpperCaseQuotedIdentifiers();
+	    storesUpperCaseQuotedIdentifiers = wrapper.storesUpperCaseQuotedIdentifiers();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    storesLowerCaseQuotedIdentifiers = wrapper
-		    .storesLowerCaseQuotedIdentifiers();
+	    storesLowerCaseQuotedIdentifiers = wrapper.storesLowerCaseQuotedIdentifiers();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    storesMixedCaseQuotedIdentifiers = wrapper
-		    .storesMixedCaseQuotedIdentifiers();
+	    storesMixedCaseQuotedIdentifiers = wrapper.storesMixedCaseQuotedIdentifiers();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
@@ -385,15 +377,13 @@ public class JdbcDatabaseMetaData {
 	}
 
 	try {
-	    supportsAlterTableWithAddColumn = wrapper
-		    .supportsAlterTableWithAddColumn();
+	    supportsAlterTableWithAddColumn = wrapper.supportsAlterTableWithAddColumn();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    supportsAlterTableWithDropColumn = wrapper
-		    .supportsAlterTableWithDropColumn();
+	    supportsAlterTableWithDropColumn = wrapper.supportsAlterTableWithDropColumn();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
@@ -417,22 +407,19 @@ public class JdbcDatabaseMetaData {
 	}
 
 	try {
-	    supportsTableCorrelationNames = wrapper
-		    .supportsTableCorrelationNames();
+	    supportsTableCorrelationNames = wrapper.supportsTableCorrelationNames();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    supportsDifferentTableCorrelationNames = wrapper
-		    .supportsDifferentTableCorrelationNames();
+	    supportsDifferentTableCorrelationNames = wrapper.supportsDifferentTableCorrelationNames();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    supportsExpressionsInOrderBy = wrapper
-		    .supportsExpressionsInOrderBy();
+	    supportsExpressionsInOrderBy = wrapper.supportsExpressionsInOrderBy();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
@@ -474,8 +461,7 @@ public class JdbcDatabaseMetaData {
 	}
 
 	try {
-	    supportsMultipleTransactions = wrapper
-		    .supportsMultipleTransactions();
+	    supportsMultipleTransactions = wrapper.supportsMultipleTransactions();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
@@ -511,8 +497,7 @@ public class JdbcDatabaseMetaData {
 	}
 
 	try {
-	    supportsANSI92IntermediateSQL = wrapper
-		    .supportsANSI92IntermediateSQL();
+	    supportsANSI92IntermediateSQL = wrapper.supportsANSI92IntermediateSQL();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
@@ -524,8 +509,7 @@ public class JdbcDatabaseMetaData {
 	}
 
 	try {
-	    supportsIntegrityEnhancementFacility = wrapper
-		    .supportsIntegrityEnhancementFacility();
+	    supportsIntegrityEnhancementFacility = wrapper.supportsIntegrityEnhancementFacility();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
@@ -579,71 +563,61 @@ public class JdbcDatabaseMetaData {
 	}
 
 	try {
-	    supportsSchemasInDataManipulation = wrapper
-		    .supportsSchemasInDataManipulation();
+	    supportsSchemasInDataManipulation = wrapper.supportsSchemasInDataManipulation();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    supportsSchemasInProcedureCalls = wrapper
-		    .supportsSchemasInProcedureCalls();
+	    supportsSchemasInProcedureCalls = wrapper.supportsSchemasInProcedureCalls();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    supportsSchemasInTableDefinitions = wrapper
-		    .supportsSchemasInTableDefinitions();
+	    supportsSchemasInTableDefinitions = wrapper.supportsSchemasInTableDefinitions();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    supportsSchemasInIndexDefinitions = wrapper
-		    .supportsSchemasInIndexDefinitions();
+	    supportsSchemasInIndexDefinitions = wrapper.supportsSchemasInIndexDefinitions();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    supportsSchemasInPrivilegeDefinitions = wrapper
-		    .supportsSchemasInPrivilegeDefinitions();
+	    supportsSchemasInPrivilegeDefinitions = wrapper.supportsSchemasInPrivilegeDefinitions();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    supportsCatalogsInDataManipulation = wrapper
-		    .supportsCatalogsInDataManipulation();
+	    supportsCatalogsInDataManipulation = wrapper.supportsCatalogsInDataManipulation();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    supportsCatalogsInProcedureCalls = wrapper
-		    .supportsCatalogsInProcedureCalls();
+	    supportsCatalogsInProcedureCalls = wrapper.supportsCatalogsInProcedureCalls();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    supportsCatalogsInTableDefinitions = wrapper
-		    .supportsCatalogsInTableDefinitions();
+	    supportsCatalogsInTableDefinitions = wrapper.supportsCatalogsInTableDefinitions();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    supportsCatalogsInIndexDefinitions = wrapper
-		    .supportsCatalogsInIndexDefinitions();
+	    supportsCatalogsInIndexDefinitions = wrapper.supportsCatalogsInIndexDefinitions();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    supportsCatalogsInPrivilegeDefinitions = wrapper
-		    .supportsCatalogsInPrivilegeDefinitions();
+	    supportsCatalogsInPrivilegeDefinitions = wrapper.supportsCatalogsInPrivilegeDefinitions();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
@@ -673,8 +647,7 @@ public class JdbcDatabaseMetaData {
 	}
 
 	try {
-	    supportsSubqueriesInComparisons = wrapper
-		    .supportsSubqueriesInComparisons();
+	    supportsSubqueriesInComparisons = wrapper.supportsSubqueriesInComparisons();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
@@ -692,15 +665,13 @@ public class JdbcDatabaseMetaData {
 	}
 
 	try {
-	    supportsSubqueriesInQuantifieds = wrapper
-		    .supportsSubqueriesInQuantifieds();
+	    supportsSubqueriesInQuantifieds = wrapper.supportsSubqueriesInQuantifieds();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    supportsCorrelatedSubqueries = wrapper
-		    .supportsCorrelatedSubqueries();
+	    supportsCorrelatedSubqueries = wrapper.supportsCorrelatedSubqueries();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
@@ -718,29 +689,25 @@ public class JdbcDatabaseMetaData {
 	}
 
 	try {
-	    supportsOpenCursorsAcrossCommit = wrapper
-		    .supportsOpenCursorsAcrossCommit();
+	    supportsOpenCursorsAcrossCommit = wrapper.supportsOpenCursorsAcrossCommit();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    supportsOpenCursorsAcrossRollback = wrapper
-		    .supportsOpenCursorsAcrossRollback();
+	    supportsOpenCursorsAcrossRollback = wrapper.supportsOpenCursorsAcrossRollback();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    supportsOpenStatementsAcrossCommit = wrapper
-		    .supportsOpenStatementsAcrossCommit();
+	    supportsOpenStatementsAcrossCommit = wrapper.supportsOpenStatementsAcrossCommit();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    supportsOpenStatementsAcrossRollback = wrapper
-		    .supportsOpenStatementsAcrossRollback();
+	    supportsOpenStatementsAcrossRollback = wrapper.supportsOpenStatementsAcrossRollback();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
@@ -872,8 +839,7 @@ public class JdbcDatabaseMetaData {
 	}
 
 	try {
-	    getDefaultTransactionIsolation = wrapper
-		    .getDefaultTransactionIsolation();
+	    getDefaultTransactionIsolation = wrapper.getDefaultTransactionIsolation();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
@@ -892,22 +858,19 @@ public class JdbcDatabaseMetaData {
 	}
 
 	try {
-	    supportsDataManipulationTransactionsOnly = wrapper
-		    .supportsDataManipulationTransactionsOnly();
+	    supportsDataManipulationTransactionsOnly = wrapper.supportsDataManipulationTransactionsOnly();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    dataDefinitionCausesTransactionCommit = wrapper
-		    .dataDefinitionCausesTransactionCommit();
+	    dataDefinitionCausesTransactionCommit = wrapper.dataDefinitionCausesTransactionCommit();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    dataDefinitionIgnoredInTransactions = wrapper
-		    .dataDefinitionIgnoredInTransactions();
+	    dataDefinitionIgnoredInTransactions = wrapper.dataDefinitionIgnoredInTransactions();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
@@ -985,21 +948,13 @@ public class JdbcDatabaseMetaData {
 	}
 
 	try {
-	    getRowIdLifetime = wrapper.getRowIdLifetime();
+	    supportsStoredFunctionsUsingCallSyntax = wrapper.supportsStoredFunctionsUsingCallSyntax();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
 
 	try {
-	    supportsStoredFunctionsUsingCallSyntax = wrapper
-		    .supportsStoredFunctionsUsingCallSyntax();
-	} catch (Throwable t) {
-	    debug("Remote Driver Thrown Exception: " + t.toString());
-	}
-
-	try {
-	    autoCommitFailureClosesAllResultSets = wrapper
-		    .autoCommitFailureClosesAllResultSets();
+	    autoCommitFailureClosesAllResultSets = wrapper.autoCommitFailureClosesAllResultSets();
 	} catch (Throwable t) {
 	    debug("Remote Driver Thrown Exception: " + t.toString());
 	}
@@ -1011,12 +966,7 @@ public class JdbcDatabaseMetaData {
 	}
     }
 
-
-    public String getStatus() {
-        return status;
-    }
-
-    public java.lang.String getURL() throws SQLException {
+    public String getURL() throws SQLException {
 	return getURL;
     }
 
@@ -1032,7 +982,7 @@ public class JdbcDatabaseMetaData {
 	return allTablesAreSelectable;
     }
 
-    public java.lang.String getUserName() throws SQLException {
+    public String getUserName() throws SQLException {
 	return getUserName;
     }
 
@@ -1052,19 +1002,19 @@ public class JdbcDatabaseMetaData {
 	return nullsAreSortedAtEnd;
     }
 
-    public java.lang.String getDatabaseProductName() throws SQLException {
+    public String getDatabaseProductName() throws SQLException {
 	return getDatabaseProductName;
     }
 
-    public java.lang.String getDatabaseProductVersion() throws SQLException {
+    public String getDatabaseProductVersion() throws SQLException {
 	return getDatabaseProductVersion;
     }
 
-    public java.lang.String getDriverName() throws SQLException {
+    public String getDriverName() throws SQLException {
 	return getDriverName;
     }
 
-    public java.lang.String getDriverVersion() throws SQLException {
+    public String getDriverVersion() throws SQLException {
 	return getDriverVersion;
     }
 
@@ -1116,35 +1066,35 @@ public class JdbcDatabaseMetaData {
 	return storesMixedCaseQuotedIdentifiers;
     }
 
-    public java.lang.String getIdentifierQuoteString() throws SQLException {
+    public String getIdentifierQuoteString() throws SQLException {
 	return getIdentifierQuoteString;
     }
 
-    public java.lang.String getSQLKeywords() throws SQLException {
+    public String getSQLKeywords() throws SQLException {
 	return getSQLKeywords;
     }
 
-    public java.lang.String getNumericFunctions() throws SQLException {
+    public String getNumericFunctions() throws SQLException {
 	return getNumericFunctions;
     }
 
-    public java.lang.String getStringFunctions() throws SQLException {
+    public String getStringFunctions() throws SQLException {
 	return getStringFunctions;
     }
 
-    public java.lang.String getSystemFunctions() throws SQLException {
+    public String getSystemFunctions() throws SQLException {
 	return getSystemFunctions;
     }
 
-    public java.lang.String getTimeDateFunctions() throws SQLException {
+    public String getTimeDateFunctions() throws SQLException {
 	return getTimeDateFunctions;
     }
 
-    public java.lang.String getSearchStringEscape() throws SQLException {
+    public String getSearchStringEscape() throws SQLException {
 	return getSearchStringEscape;
     }
 
-    public java.lang.String getExtraNameCharacters() throws SQLException {
+    public String getExtraNameCharacters() throws SQLException {
 	return getExtraNameCharacters;
     }
 
@@ -1252,15 +1202,15 @@ public class JdbcDatabaseMetaData {
 	return supportsLimitedOuterJoins;
     }
 
-    public java.lang.String getSchemaTerm() throws SQLException {
+    public String getSchemaTerm() throws SQLException {
 	return getSchemaTerm;
     }
 
-    public java.lang.String getProcedureTerm() throws SQLException {
+    public String getProcedureTerm() throws SQLException {
 	return getProcedureTerm;
     }
 
-    public java.lang.String getCatalogTerm() throws SQLException {
+    public String getCatalogTerm() throws SQLException {
 	return getCatalogTerm;
     }
 
@@ -1268,7 +1218,7 @@ public class JdbcDatabaseMetaData {
 	return isCatalogAtStart;
     }
 
-    public java.lang.String getCatalogSeparator() throws SQLException {
+    public String getCatalogSeparator() throws SQLException {
 	return getCatalogSeparator;
     }
 
@@ -1464,13 +1414,11 @@ public class JdbcDatabaseMetaData {
 	return supportsTransactions;
     }
 
-    public boolean supportsDataDefinitionAndDataManipulationTransactions()
-	    throws SQLException {
+    public boolean supportsDataDefinitionAndDataManipulationTransactions() throws SQLException {
 	return supportsDataDefinitionAndDataManipulationTransactions;
     }
 
-    public boolean supportsDataManipulationTransactionsOnly()
-	    throws SQLException {
+    public boolean supportsDataManipulationTransactionsOnly() throws SQLException {
 	return supportsDataManipulationTransactionsOnly;
     }
 
@@ -1530,10 +1478,6 @@ public class JdbcDatabaseMetaData {
 	return supportsStatementPooling;
     }
 
-    public java.sql.RowIdLifetime getRowIdLifetime() throws SQLException {
-	return getRowIdLifetime;
-    }
-
     public boolean supportsStoredFunctionsUsingCallSyntax() throws SQLException {
 	return supportsStoredFunctionsUsingCallSyntax;
     }
@@ -1548,7 +1492,7 @@ public class JdbcDatabaseMetaData {
 
     @Override
     public String toString() {
-	return "JdbcDatabaseMetaData [status=" + status + ", getURL=" + getURL + ", isReadOnly=" + isReadOnly
+	return "JdbcDatabaseMetaData [getURL=" + getURL + ", isReadOnly=" + isReadOnly
 		+ ", allProceduresAreCallable=" + allProceduresAreCallable + ", allTablesAreSelectable="
 		+ allTablesAreSelectable + ", getUserName=" + getUserName + ", nullsAreSortedHigh=" + nullsAreSortedHigh
 		+ ", nullsAreSortedLow=" + nullsAreSortedLow + ", nullsAreSortedAtStart=" + nullsAreSortedAtStart
@@ -1633,10 +1577,9 @@ public class JdbcDatabaseMetaData {
 		+ ", getDatabaseMinorVersion=" + getDatabaseMinorVersion + ", getJDBCMajorVersion="
 		+ getJDBCMajorVersion + ", getJDBCMinorVersion=" + getJDBCMinorVersion + ", getSQLStateType="
 		+ getSQLStateType + ", locatorsUpdateCopy=" + locatorsUpdateCopy + ", supportsStatementPooling="
-		+ supportsStatementPooling + ", getRowIdLifetime=" + getRowIdLifetime
-		+ ", supportsStoredFunctionsUsingCallSyntax=" + supportsStoredFunctionsUsingCallSyntax
-		+ ", autoCommitFailureClosesAllResultSets=" + autoCommitFailureClosesAllResultSets
-		+ ", getResultSetHoldability=" + getResultSetHoldability + "]";
+		+ supportsStatementPooling + ", supportsStoredFunctionsUsingCallSyntax="
+		+ supportsStoredFunctionsUsingCallSyntax + ", autoCommitFailureClosesAllResultSets="
+		+ autoCommitFailureClosesAllResultSets + ", getResultSetHoldability=" + getResultSetHoldability + "]";
     }
 
     private static void debug(String s) {
