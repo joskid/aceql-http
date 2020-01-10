@@ -4,7 +4,9 @@
 
 <img src="https://www.aceql.com/favicon.png" alt="AceQL HTTP Icon"/> 
 
- * [Using the API](#using-the-api)
+* [AceQL HTTP v4.0 - January 10, 2020](#aceql-http-v40---january-10-2020)
+   * [API User Guide](#api-user-guide)
+   * [Using the API](#using-the-api)
       * [Java, C#, Swift and Python SDK](#java-c-swift-and-python-sdk)
       * [Authentication &amp; session creation](#authentication--session-creation)
       * [AceQL Server responses](#aceql-server-responses)
@@ -39,7 +41,15 @@
          * [Server response to blob_download call](#server-response-to-blob_download-call)
          * [get_blob_length &amp; blob_download call – cURL examples](#get_blob_length--blob_download-call--curl-examples)
       * [get_connection](#get_connection)
-         * [Server response get_connection call](#server-response-get_connection-call)
+         * [Server response to get_connection call](#server-response-to-get_connection-call)
+      * [db_schema_download](#db_schema_download)
+         * [Server response to db_schema_download call](#server-response-to-db_schema_download-call)
+      * [get_db_metadata](#get_db_metadata)
+         * [Server response to get_db_metadata call](#server-response-to-get_db_metadata-call)
+      * [get_table_names](#get_table_names)
+         * [Server response to get_table_names call](#server-response-to-get_table_names-call)
+      * [get_table](#get_table)
+         * [Server response to get_table call](#server-response-to-get_table-call)
       * [close](#close)
       * [logout](#logout)
          * [Server response to logout call](#server-response-to-logout-call)
@@ -1038,6 +1048,38 @@ Retrieves the table names of the remote database.
 ### Server response to get_table_names call
 
 If everything is OK, a JSON structure that contains the table names of the remote database.
+
+In case of error:
+
+```
+{  
+   "status":"FAIL",
+   "error_type":{error type numeric value},
+   "error_message":"{error message returned by the server}",
+   "http_status":{http status code numeric value}
+}
+
+```
+
+## get_table
+
+Retrieves the details of a table of the remote database.
+
+| URL Format                                                 |
+| ---------------------------------------------------------- |
+| server/aceql/session/{session_id}/metadata_query/get_table |
+
+| URL parameter | Description                               |
+| ------------- | ----------------------------------------- |
+| session_id    | The session_id value returned by `login`. |
+
+| Request parameter | Requested | Description                        |
+| ----------------- | --------- | ---------------------------------- |
+| table_name        | No        | The name of the table to retrieve. |
+
+### Server response to get_table call
+
+If everything is OK, a JSON structure that contains the table details. The naming conventions are those used in JDBC.
 
 In case of error:
 
