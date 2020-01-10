@@ -40,7 +40,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
 import org.kawanfw.sql.metadata.AceQLMetaData;
-import org.kawanfw.sql.metadata.TableName;
 import org.kawanfw.sql.metadata.sc.info.AceQLOutputFormat;
 import org.kawanfw.sql.metadata.sc.info.SchemaInfoAccessor;
 import org.kawanfw.sql.metadata.sc.info.SchemaInfoSC;
@@ -117,9 +116,9 @@ public class MetadataQuerySchemaDownloader {
     }
 
     private static boolean exists(AceQLMetaData aceQLMetaData, String tableName) throws SQLException {
-	List<TableName> tableNames =aceQLMetaData.getTableNames();
-	for (TableName theTableName : tableNames) {
-	    if (theTableName.getName().contains(tableName.toLowerCase())) {
+	List<String> tableNames = aceQLMetaData.getTableNames();
+	for (String theTableName : tableNames) {
+	    if (theTableName.contains(tableName.toLowerCase())) {
 		return true;
 	    }
 	}

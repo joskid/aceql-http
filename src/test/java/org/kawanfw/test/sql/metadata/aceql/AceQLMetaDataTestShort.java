@@ -29,7 +29,6 @@ import java.sql.DatabaseMetaData;
 import java.util.List;
 
 import org.kawanfw.sql.metadata.AceQLMetaData;
-import org.kawanfw.sql.metadata.TableName;
 
 public class AceQLMetaDataTestShort {
 
@@ -58,10 +57,10 @@ public class AceQLMetaDataTestShort {
 	    List<String> types = aceQLMetaData.getTableTypes();
 	    System.out.println("types   : " + types);
 
-	    List<TableName> tables = aceQLMetaData.getTableNames();
+	    List<String> tables = aceQLMetaData.getTableNames();
 	    System.out.println("tables  : " + tables);
 
-	    List<TableName> filteredTables = aceQLMetaData.getTableNames("VIEW");
+	    List<String> filteredTables = aceQLMetaData.getTableNames("VIEW");
 	    System.out.println("Filtered: " + filteredTables);
 
 	}

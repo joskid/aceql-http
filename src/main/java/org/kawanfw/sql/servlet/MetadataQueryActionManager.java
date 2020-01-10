@@ -44,7 +44,6 @@ import org.kawanfw.sql.api.server.firewall.SqlFirewallManager;
 import org.kawanfw.sql.metadata.AceQLMetaData;
 import org.kawanfw.sql.metadata.JdbcDatabaseMetaData;
 import org.kawanfw.sql.metadata.Table;
-import org.kawanfw.sql.metadata.TableName;
 import org.kawanfw.sql.metadata.dto.JdbcDatabaseMetaDataDto;
 import org.kawanfw.sql.metadata.dto.TableDto;
 import org.kawanfw.sql.metadata.dto.TableNamesDto;
@@ -155,9 +154,9 @@ public class MetadataQueryActionManager {
 	    response.setContentType("text/plain");
 
 	    Set<String> tables = new HashSet<>();
-	    List<TableName> theTableNames = aceQLMetaData.getTableNames();
-	    for (TableName theTableName : theTableNames) {
-		tables.add(theTableName.getName().toLowerCase());
+	    List<String> theTableNames = aceQLMetaData.getTableNames();
+	    for (String theTableName : theTableNames) {
+		tables.add(theTableName.toLowerCase());
 	    }
 
 	    if (tableName != null && tables.contains(tableName.toLowerCase())) {
@@ -173,12 +172,13 @@ public class MetadataQueryActionManager {
 	} else if (action.equals(HttpParameter.METADATA_QUERY_GET_TABLE_NAMES)) {
 
 	    String tableType = request.getParameter(HttpParameter.TABLE_TYPE);
-	    List<TableName> tableNames = new ArrayList<>();
+	    List<String> tableNames = new ArrayList<>();
 	    if (tableType == null || tableType.isEmpty()) {
 		tableNames = aceQLMetaData.getTableNames();
 	    } else {
 		tableNames = aceQLMetaData.getTableNames(tableType);
 	    }
+
 	    TableNamesDto tableNamesDto = new TableNamesDto(tableNames);
 	    String jsonString = GsonWsUtil.getJSonString(tableNamesDto);
 	    response.setContentType("text/plain");

@@ -62,9 +62,9 @@ public class AceQLMetaData {
     public AceQLMetaData(Connection connection) throws SQLException {
 	this.connection = connection;
 
-	List<TableName> tableNames = getTableNames();
-	for (TableName tableName : tableNames) {
-	    tableNamesSet.add(tableName.getName());
+	List<String> tableNames = getTableNames();
+	for (String tableName : tableNames) {
+	    tableNamesSet.add(tableName);
 	}
     }
 
@@ -160,7 +160,7 @@ public class AceQLMetaData {
      * @return the non-system table names for the Connection
      * @throws SQLException it any SQL Exception occurs
      */
-    public List<TableName> getTableNames(String filterTableType) throws SQLException {
+    public List<String> getTableNames(String filterTableType) throws SQLException {
 	DatabaseMetaData databaseMetaData = connection.getMetaData();
 
 	// String [] types = {"TABLE","VIEW", "SYSTEM TABLE", "GLOBAL TEMPORARY","LOCAL
@@ -189,7 +189,7 @@ public class AceQLMetaData {
 
 	ResultSet rs = databaseMetaData.getTables(catalog, schema, null, types);
 
-	List<TableName> tableNames = new ArrayList<>();
+	List<String> tableNames = new ArrayList<>();
 	while (rs.next()) {
 
 	    String schema = rs.getString(2);
@@ -226,8 +226,7 @@ public class AceQLMetaData {
 		    + " TABLE_TYPE: " + rs.getString(4));
 
 	    tableName = tableName.toLowerCase();
-	    tableType = tableType.toLowerCase();
-	    tableNames.add(new TableName(tableName, tableType));
+	    tableNames.add(tableName);
 	}
 	return tableNames;
     }
@@ -239,7 +238,7 @@ public class AceQLMetaData {
      * @return the non-system table names for the Connection
      * @throws SQLException it any SQL Exception occurs
      */
-    public List<TableName> getTableNames() throws SQLException {
+    public List<String> getTableNames() throws SQLException {
 	return getTableNames(null);
 
     }

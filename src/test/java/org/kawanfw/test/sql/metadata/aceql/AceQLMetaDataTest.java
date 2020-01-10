@@ -35,7 +35,6 @@ import org.kawanfw.sql.metadata.ImportedKey;
 import org.kawanfw.sql.metadata.Index;
 import org.kawanfw.sql.metadata.PrimaryKey;
 import org.kawanfw.sql.metadata.Table;
-import org.kawanfw.sql.metadata.TableName;
 
 public class AceQLMetaDataTest {
 
@@ -62,15 +61,15 @@ public class AceQLMetaDataTest {
 	List<String> tableTypes = aceQLMetaData.getTableTypes();
 	System.out.println("tableTypes: " + tableTypes);
 
-	List<TableName> tables = aceQLMetaData.getTableNames();
+	List<String> tables = aceQLMetaData.getTableNames();
 	System.out.println("All Tables:" + tables);
 
-	List<TableName> filteredTables = aceQLMetaData.getTableNames("VIEW");
+	List<String> filteredTables = aceQLMetaData.getTableNames("VIEW");
 	System.out.println("Filtered" + filteredTables);
 
-	for (TableName tableName : tables) {
+	for (String tableName : tables) {
 	    // System.out.println();
-	    Table table = aceQLMetaData.getTable(tableName.getName());
+	    Table table = aceQLMetaData.getTable(tableName);
 	    List<Column> columns = table.getColumns();
 	    System.out.println();
 	    System.out.println("Table: " + tableName);
@@ -81,17 +80,17 @@ public class AceQLMetaDataTest {
 	    for (PrimaryKey primaryKey : primaryKeys) {
 		System.out.println(primaryKey);
 	    }
-	    List<Index> indexes = aceQLMetaData.getIndexes(tableName.getName());
+	    List<Index> indexes = aceQLMetaData.getIndexes(tableName);
 	    for (Index index : indexes) {
 		System.out.println(index);
 	    }
-	    List<ImportedKey> importedKeys = aceQLMetaData.getImportedKeys(tableName.getName());
+	    List<ImportedKey> importedKeys = aceQLMetaData.getImportedKeys(tableName);
 	    if (importedKeys != null && !importedKeys.isEmpty()) {
 		for (ImportedKey importedKey : importedKeys) {
 		    System.out.println(importedKey);
 		}
 	    }
-	    List<ExportedKey> exportedKeys = aceQLMetaData.getExportedKeys(tableName.getName());
+	    List<ExportedKey> exportedKeys = aceQLMetaData.getExportedKeys(tableName);
 	    if (exportedKeys != null && !exportedKeys.isEmpty()) {
 		for (ExportedKey exportedKey : exportedKeys) {
 		    System.out.println(exportedKey);

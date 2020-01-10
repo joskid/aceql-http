@@ -31,7 +31,6 @@ import java.util.List;
 import org.kawanfw.sql.metadata.AceQLMetaData;
 import org.kawanfw.sql.metadata.Column;
 import org.kawanfw.sql.metadata.Table;
-import org.kawanfw.sql.metadata.TableName;
 import org.kawanfw.sql.metadata.util.GsonWsUtil;
 
 /**
@@ -49,7 +48,7 @@ public class GsonWsUtiltest {
 	Connection connection = ConnectionParms.getConnection(ConnectionParms.MYSQL_CONNECTION);
 	AceQLMetaData aceQLMetaData = new AceQLMetaData(connection);
 
-	List<TableName> tables = aceQLMetaData.getTableNames();
+	List<String> tables = aceQLMetaData.getTableNames();
 	System.out.println(tables);
 
 	Table table = aceQLMetaData.getTable("orderlog2");

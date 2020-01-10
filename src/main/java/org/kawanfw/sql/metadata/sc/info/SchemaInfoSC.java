@@ -40,7 +40,6 @@ import java.util.regex.Pattern;
 
 import org.kawanfw.sql.api.util.SqlUtil;
 import org.kawanfw.sql.metadata.AceQLMetaData;
-import org.kawanfw.sql.metadata.TableName;
 import org.kawanfw.sql.metadata.util.FileWordReplacer;
 import org.kawanfw.sql.version.VersionValues;
 
@@ -87,9 +86,9 @@ public class SchemaInfoSC {
 
 	this.connection = connection;
 	AceQLMetaData aceQLMetaData = new AceQLMetaData(connection);
-	List<TableName> tables = aceQLMetaData.getTableNames();
-	for (TableName tableName : tables) {
-	    tableSet.add(tableName.getName());
+	List<String> tables = aceQLMetaData.getTableNames();
+	for (String tableName : tables) {
+	    tableSet.add(tableName);
 	}
     }
 
