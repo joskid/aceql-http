@@ -29,18 +29,21 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * Firewall instance that denies any call of the the raw <code>Statement</code> class. (Calling Statements without parameters is forbidden).
+ * Firewall instance that denies any call of the the raw <code>Statement</code>
+ * class. (Calling Statements without parameters is forbidden).
+ *
  * @author Nicolas de Pomereu
  *
  */
 public class DenyStatementClassManager extends DefaultSqlFirewallManager implements SqlFirewallManager {
 
     /**
-     *  @return <code>false</code>. (Nobody is allowed to create
-     *         raw <code>Statement</code>, i.e. call statements without parameters.)
+     * @return <code>false</code>. (Nobody is allowed to create raw
+     *         <code>Statement</code>, i.e. call statements without parameters.)
      */
     @Override
-    public boolean allowStatementClass(String username, String database, Connection connection) throws IOException, SQLException {
+    public boolean allowStatementClass(String username, String database, Connection connection)
+	    throws IOException, SQLException {
 	return false;
     }
 }

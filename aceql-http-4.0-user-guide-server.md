@@ -1,4 +1,4 @@
-# AceQL HTTP v3.2.2   - September 16,  2019
+# AceQL HTTP v4.0   - January 10,  2020
 
 # Server Installation and Configuration Guide  
 
@@ -955,7 +955,7 @@ Create a `MySqlConfigurator` class that extends `DefaultSqlConfigurator` and imp
   }
 ```
 
-​ We can now implement `runIfStatementRefused`:
+ We can now implement `runIfStatementRefused`:
 
 ```java
     /**

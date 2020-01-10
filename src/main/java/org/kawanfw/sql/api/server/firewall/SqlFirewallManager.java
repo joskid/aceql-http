@@ -30,6 +30,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import org.kawanfw.sql.api.server.StatementAnalyzer;
+
 /**
  * Interface that allows to define firewall rules for AceQL HTTP SQL calls. <br>
  * Concrete implementations are defined in aceql-server.properties. <br<br>
@@ -40,6 +42,7 @@ import java.util.List;
  * database).</li>
  * <li>Define if a client user has the right to call a raw
  * <code>Statement</code> that is not a <code>PreparedStatement</code>.</li>
+ * <li>Define if a client user has the right to call a the AceQL Metadata API..</li>
  * <li>Define a specific piece of Java code to analyze the source code of the
  * SQL statement before allowing or not it's execution.</li>
  * </ul>
@@ -60,6 +63,9 @@ import java.util.List;
  * <li>{@link DenyMetadataQueryManager}</li>
  * <li>{@link DenyStatementClassManager}</li>
  * </ul>
+ * <p>
+ * Note that the helper class {@link StatementAnalyzer} allows to do some simple
+ * tests on the SQL statement string representation.
  */
 
 public interface SqlFirewallManager {
