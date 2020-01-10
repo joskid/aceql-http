@@ -52,7 +52,7 @@ public class ServletMetadataQuery {
 	    return HttpParameter.METADATA_QUERY_GET_TABLE_NAMES;
 	}
 	else if (requestUri.contains("/metadata_query/get_table")) {
-	    return HttpParameter.METADATA_QUERY_GET_TABLE_DETAIL;
+	    return HttpParameter.METADATA_QUERY_GET_TABLE_DETAILS;
 	}
 	else {
 	    throw new IllegalArgumentException("Unknown metadata_query action: " + requestUri);
@@ -64,7 +64,7 @@ public class ServletMetadataQuery {
 	    throw new NullPointerException("action is null");
 	}
 	return (action.equals(HttpParameter.METADATA_QUERY_DB_SCHEMA_DOWNLOAD)
-		|| action.equals(HttpParameter.METADATA_QUERY_GET_TABLE_DETAIL)
+		|| action.equals(HttpParameter.METADATA_QUERY_GET_TABLE_DETAILS)
 		|| action.equals(HttpParameter.METADATA_QUERY_GET_DB_METADATA)
 		|| action.equals(HttpParameter.METADATA_QUERY_GET_TABLE_NAMES));
     }

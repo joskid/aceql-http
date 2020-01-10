@@ -102,7 +102,7 @@ public class HttpParameter {
     public static final String METADATA_QUERY_DB_SCHEMA_DOWNLOAD = "metadata_query_db_schema_download";
     public static final String METADATA_QUERY_GET_TABLE_NAMES = "metadata_query_get_table_names";
     public static final String METADATA_QUERY_GET_DB_METADATA = "metadata_query_get_db_metadata";
-    public static final String METADATA_QUERY_GET_TABLE_DETAIL = "metadata_query_get_table_detail";
+    public static final String METADATA_QUERY_GET_TABLE_DETAILS = "metadata_query_get_table_details";
 
     // SAVEPOINTS
     public static final String SET_SAVEPOINT = "set_savepoint";

@@ -1,4 +1,4 @@
-# AceQL HTTP v4.0 - December 27, 2019
+# AceQL HTTP v4.0 - January 10, 2020
 
 # API User Guide
 
@@ -929,7 +929,7 @@ Allows to open a new `java.sql.Connection` on the server without doing a new aut
 | ----------------- | --------- | ----------- |
 | none              |           |             |
 
-### Server response get_connection call
+### Server response to get_connection call
 
 If everything is OK:
 
@@ -953,6 +953,105 @@ In case of error:
 }
 
 ```
+
+## db_schema_download
+
+Downloads the database schema in HTML or text plain format.
+
+| URL Format                                                   |
+| ------------------------------------------------------------ |
+| server/aceql/session/{session_id}/metadata_query/db_schema_download |
+
+| URL parameter | Description                               |
+| ------------- | ----------------------------------------- |
+| session_id    | The session_id value returned by `login`. |
+
+| Request parameter | Requested | Description                                                  |
+| ----------------- | --------- | ------------------------------------------------------------ |
+| format            | No        | The format of the downloaded stream. `html` or `text`. Defaults to `html`. |
+| table_name        | No        | if specified, the downloaded schema will contain only the table. |
+
+### Server response to db_schema_download call
+
+If everything is OK, a stream containing  the schema in HTML or text format is sent by the server.
+
+In case of error:
+
+```
+{  
+   "status":"FAIL",
+   "error_type":{error type numeric value},
+   "error_message":"{error message returned by the server}",
+   "http_status":{http status code numeric value}
+}
+
+```
+
+## get_db_metadata
+
+Retrieves the main values of the database's metadata as retrieved by the remote JDBC Driver.
+
+| URL Format                                                   |
+| ------------------------------------------------------------ |
+| server/aceql/session/{session_id}/metadata_query/get_db_metadata |
+
+| URL parameter | Description                               |
+| ------------- | ----------------------------------------- |
+| session_id    | The session_id value returned by `login`. |
+
+| Request parameter | Requested | Description |
+| ----------------- | --------- | ----------- |
+| none              |           |             |
+
+### Server response to get_db_metadata call
+
+If everything is OK, a  JSON structure with the main values of the database's metadata as retrieved by the remote JDBC Driver.
+
+In case of error:
+
+```
+{  
+   "status":"FAIL",
+   "error_type":{error type numeric value},
+   "error_message":"{error message returned by the server}",
+   "http_status":{http status code numeric value}
+}
+
+```
+
+## get_table_names
+
+Retrieves the table names of the remote database.
+
+| URL Format                                                   |
+| ------------------------------------------------------------ |
+| server/aceql/session/{session_id}/metadata_query/get_table_names |
+
+| URL parameter | Description                               |
+| ------------- | ----------------------------------------- |
+| session_id    | The session_id value returned by `login`. |
+
+| Request parameter | Requested | Description                                   |
+| ----------------- | --------- | --------------------------------------------- |
+| table_type        | No        | The table type to select (`TABLE` or `VIEW)`. |
+
+### Server response to get_table_names call
+
+If everything is OK, a JSON structure that contains the table names of the remote database.
+
+In case of error:
+
+```
+{  
+   "status":"FAIL",
+   "error_type":{error type numeric value},
+   "error_message":"{error message returned by the server}",
+   "http_status":{http status code numeric value}
+}
+
+```
+
+## 
 
 ## close
 

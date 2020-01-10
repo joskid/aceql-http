@@ -149,7 +149,7 @@ public class MetadataQueryActionManager {
 	    String jsonString = GsonWsUtil.getJSonString(jdbcDatabaseMetaDataDto);
 	    response.setContentType("text/plain");
 	    ServerSqlManager.writeLine(out, jsonString);
-	} else if (action.equals(HttpParameter.METADATA_QUERY_GET_TABLE_DETAIL)) {
+	} else if (action.equals(HttpParameter.METADATA_QUERY_GET_TABLE_DETAILS)) {
 	    String tableName = request.getParameter(HttpParameter.TABLE_NAME);
 	    response.setContentType("text/plain");
 
