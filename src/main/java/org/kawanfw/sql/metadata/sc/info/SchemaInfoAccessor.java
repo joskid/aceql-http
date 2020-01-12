@@ -47,7 +47,7 @@ public class SchemaInfoAccessor {
     public boolean isAccessible() {
 	String javaVersion = SystemUtils.JAVA_VERSION;
 	if (SystemUtils.JAVA_VERSION.compareTo("1.8") < 0) {
-	    failureReason = "Java version is " + javaVersion + ". Access to schema info requires Java 8 or beyond.";
+	    failureReason = "Java version is " + javaVersion + ". Access to db_schema_download API info requires Java 8 or beyond.";
 	    return false;
 	}
 

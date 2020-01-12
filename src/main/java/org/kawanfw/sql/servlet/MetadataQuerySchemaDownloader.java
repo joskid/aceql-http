@@ -100,6 +100,7 @@ public class MetadataQuerySchemaDownloader {
 	    JsonErrorReturn errorReturn = new JsonErrorReturn(response, HttpServletResponse.SC_BAD_REQUEST,
 		    JsonErrorReturn.ERROR_ACEQL_FAILURE, schemaInfoAccessor.getFailureReason());
 	    ServerSqlManager.writeLine(out, errorReturn.build());
+	    return;
 	}
 
 	SchemaInfoSC schemaInfoSC = schemaInfoAccessor.getSchemaInfoSC();
