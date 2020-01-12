@@ -168,6 +168,7 @@ public class MetadataQueryActionManager {
 		JsonErrorReturn errorReturn = new JsonErrorReturn(response, HttpServletResponse.SC_BAD_REQUEST,
 			JsonErrorReturn.ERROR_ACEQL_ERROR, JsonErrorReturn.INVALID_TABLE_NAME);
 		ServerSqlManager.writeLine(out, errorReturn.build());
+		return;
 	    }
 	} else if (action.equals(HttpParameter.METADATA_QUERY_GET_TABLE_NAMES)) {
 

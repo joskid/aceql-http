@@ -1,4 +1,4 @@
-# AceQL HTTP v4.0   - January 10,  2020
+# AceQL HTTP v4.0   - January 13,  2020
 
 # Server Installation and Configuration Guide  
 
