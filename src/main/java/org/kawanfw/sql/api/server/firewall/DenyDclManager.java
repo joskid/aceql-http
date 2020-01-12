@@ -32,7 +32,7 @@ import java.util.List;
 import org.kawanfw.sql.api.server.StatementAnalyzer;
 
 /**
- * Firewall that denies any DCL (Data Control Language) call.
+ * Firewall manager that denies any DCL (Data Control Language) call.
  * @author Nicolas de Pomereu
  *
  */

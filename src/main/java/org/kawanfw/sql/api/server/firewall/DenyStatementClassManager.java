@@ -29,7 +29,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * Firewall instance that denies any call of the the raw <code>Statement</code>
+ * Firewall manager that denies any call of the the raw <code>Statement</code>
  * class. (Calling Statements without parameters is forbidden).
  *
  * @author Nicolas de Pomereu

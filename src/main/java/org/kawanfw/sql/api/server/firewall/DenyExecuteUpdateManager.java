@@ -29,7 +29,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * Firewall instance that denies any update of the the database. The database is
+ * Firewall manager that denies any update of the the database. The database is
  * thus guaranteed to be accessed in read only from client side.
  *
  * @author Nicolas de Pomereu

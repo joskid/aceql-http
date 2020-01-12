@@ -29,7 +29,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * Firewall instance that denies the use of the AceQL Metadata Query API.
+ * Firewall manager that denies the use of the AceQL Metadata Query API.
  *
  * @author Nicolas de Pomereu
  *

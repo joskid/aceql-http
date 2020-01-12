@@ -33,7 +33,7 @@ import java.util.List;
 import org.kawanfw.sql.api.server.StatementAnalyzer;
 
 /**
- * Firewall instance that denies any DDL (Data Definition Language) call.
+ * Firewall manager that denies any DDL (Data Definition Language) call.
  * @author Nicolas de Pomereu
  *
  */
