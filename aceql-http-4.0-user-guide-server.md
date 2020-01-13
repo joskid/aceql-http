@@ -84,7 +84,7 @@ AceQL HTTP is authorized through an Open Source license: [AceQL Open Source Lice
 
 - The AceQL Web Server.
 - User  Configuration classes injected at runtime, called "Configurators" in this document. These are server classes that     ensure both security and configuration.
-- The AceQL Helper Libraries. These are SDKs for Java and C# that allow you to wrap AceQL HTTP API calls using fluent code.
+- The AceQL Helper Libraries. These are SDKs for Java, C#  and Python that allow you to wrap AceQL HTTP API calls using fluent code.
 
 The execution of each AceQL HTTP API statement is conditioned by optional rules, defined in configuration classes called "Configurators."
 
@@ -114,9 +114,9 @@ This User Guide covers:
 
 ## Technical operating environment
 
-The AceQL HTTP server side is entirely written in Java, and functions identically under Microsoft Windows, Linux, and all versions of UNIX that support Java 7+,Servlet 3.1+ and JDBC 4.0+.
+The AceQL HTTP server side is entirely written in Java, and functions identically under Microsoft Windows, Linux, and all versions of UNIX that support Java 8+,Servlet 3.1+ and JDBC 4.0+.
 
-The only required third party installation is a Java 7+.
+The only required third party installation is a Java 8+.
 
 The following environments are supported in this version:
 

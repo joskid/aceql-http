@@ -83,7 +83,7 @@ public class MetadataQueryActionManager {
 	try {
 	    executeInTryCatch(out);
 	} catch (SecurityException e) {
-	    JsonErrorReturn errorReturn = new JsonErrorReturn(response, HttpServletResponse.SC_UNAUTHORIZED,
+	    JsonErrorReturn errorReturn = new JsonErrorReturn(response, HttpServletResponse.SC_FORBIDDEN,
 		    JsonErrorReturn.ERROR_ACEQL_UNAUTHORIZED, e.getMessage());
 	    ServerSqlManager.writeLine(out, errorReturn.build());
 	} catch (SQLException e) {

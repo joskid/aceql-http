@@ -43,7 +43,7 @@ Then launch the script that will create the tables in a database
 
 ## Linux/Unix Installation & Server Startup 
 
-AceQL requires the installation of Java version 7+.
+AceQL requires the installation of Java version 8+.
 
 ### Download & installation
 

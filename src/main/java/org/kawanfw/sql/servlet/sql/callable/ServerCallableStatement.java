@@ -117,7 +117,7 @@ public class ServerCallableStatement {
 	    outFinal = getFinalOutputStream(out);
 	    executePrepStatement(outFinal);
 	} catch (SecurityException e) {
-	    JsonErrorReturn errorReturn = new JsonErrorReturn(response, HttpServletResponse.SC_UNAUTHORIZED,
+	    JsonErrorReturn errorReturn = new JsonErrorReturn(response, HttpServletResponse.SC_FORBIDDEN,
 		    JsonErrorReturn.ERROR_ACEQL_UNAUTHORIZED, e.getMessage());
 	    ServerSqlManager.writeLine(outFinal, errorReturn.build());
 	} catch (SQLException e) {

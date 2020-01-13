@@ -50,6 +50,8 @@ What's New:
   and highly supported SQL parser (JSqlParser).
   
 - Tomcat base libraries have been updated to 8.5.50 (Security requirements). 
+
+- AceQL HTTP requires now Java 8 or higher.
    
 
 AceQL HTTP Version 3.2.2 - 16-Sep-2019
