@@ -36,9 +36,8 @@ import org.kawanfw.sql.api.server.DefaultDatabaseConfigurator;
 /**
  * Default firewall manager for all SQL databases. <br>
  * <br>
- * <b>WARNING</b>: This default implementation will
- * allow to start immediate remote SQL calls but is <b>*not*</b> at all secured.
- * <br>
+ * <b>WARNING</b>: This default implementation will allow to start immediate
+ * remote SQL calls but is <b>*not*</b> at all secured. <br>
  * <b>It is highly recommended to override this class with a secured
  * implementation for all methods.</b>
  *
@@ -48,8 +47,8 @@ import org.kawanfw.sql.api.server.DefaultDatabaseConfigurator;
 public class DefaultSqlFirewallManager implements SqlFirewallManager {
 
     /**
-     * Constructor. {@code SqlFirewallManager} implementation must have no constructor or a
-     * unique no parameters constructor.
+     * Constructor. {@code SqlFirewallManager} implementation must have no
+     * constructor or a unique no parameters constructor.
      */
     public DefaultSqlFirewallManager() {
 
@@ -60,7 +59,8 @@ public class DefaultSqlFirewallManager implements SqlFirewallManager {
      *         raw <code>Statement</code>, i.e. call statements without parameters.)
      */
     @Override
-    public boolean allowStatementClass(String username, String database, Connection connection) throws IOException, SQLException {
+    public boolean allowStatementClass(String username, String database, Connection connection)
+	    throws IOException, SQLException {
 	return true;
     }
 
@@ -79,7 +79,8 @@ public class DefaultSqlFirewallManager implements SqlFirewallManager {
      *         database update statement.)
      */
     @Override
-    public boolean allowExecuteUpdate(String username, String database, Connection connection) throws IOException, SQLException {
+    public boolean allowExecuteUpdate(String username, String database, Connection connection)
+	    throws IOException, SQLException {
 	return true;
     }
 
@@ -88,7 +89,8 @@ public class DefaultSqlFirewallManager implements SqlFirewallManager {
      *         the Metadata Query API).
      */
     @Override
-    public boolean allowMetadataQuery(String username, String database, Connection connection) throws IOException, SQLException {
+    public boolean allowMetadataQuery(String username, String database, Connection connection)
+	    throws IOException, SQLException {
 	return true;
     }
 
@@ -101,8 +103,8 @@ public class DefaultSqlFirewallManager implements SqlFirewallManager {
 	if (isMetadataQuery) {
 	    logInfo = "Client " + username + " (IP: " + ipAddress + ") has been denied executing a Metadata Query API.";
 	} else {
-	    logInfo = "Client " + username + " (IP: " + ipAddress + ") has been denied executing sql statement: "
-		    + sql + " with parameters: " + parameterValues;
+	    logInfo = "Client " + username + " (IP: " + ipAddress + ") has been denied executing sql statement: " + sql
+		    + " with parameters: " + parameterValues;
 	}
 
 	DefaultDatabaseConfigurator defaultDatabaseConfigurator = new DefaultDatabaseConfigurator();
