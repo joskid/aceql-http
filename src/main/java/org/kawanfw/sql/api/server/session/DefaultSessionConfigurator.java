@@ -33,7 +33,6 @@ import org.apache.commons.lang3.SystemUtils;
 
 /**
  * Default implementation of session management:
- * <p>
  * <ul>
  * <li>Session id are generated using a {@code SecureRandom} with the
  * {@link SessionIdentifierGenerator} class.</li>
@@ -166,7 +165,7 @@ public class DefaultSessionConfigurator implements SessionConfigurator {
      * <ul>
      * <li>Verify that the sessionId exists</li>
      * <li>Verify that the sessionId is not expired (must be less that 12
-     * hours>.</li>
+     * hours).</li>
      * </ul>
      */
     @Override

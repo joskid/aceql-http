@@ -53,7 +53,7 @@ import org.kawanfw.sql.util.Tag;
  * releases it into the pool.</li>
  * </ul>
  * <p>
- * <b><font color="red">WARNING</b></font>: This default implementation will
+ * <b>WARNING</b>: This default implementation will
  * allow to start immediate remote SQL calls but is <b>*not*</b> at all secured.
  * <br>
  * <b>It is highly recommended to override this class with a secured
@@ -94,7 +94,7 @@ public class DefaultDatabaseConfigurator implements DatabaseConfigurator {
      * the {@code Connection} is extracted from the {@code DataSource} created
      * by the embedded Tomcat JDBC Pool. The JDBC parameters used to create the
      * {@code DataSource} are defined in the properties file passed at start-up
-     * of AceQL.</li>
+     * of AceQL.
      *
      * @param database
      *            the database name to extract the {@code Connection} for.

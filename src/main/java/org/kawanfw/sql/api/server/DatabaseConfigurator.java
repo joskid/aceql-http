@@ -43,8 +43,7 @@ import java.util.logging.Logger;
  * <li>Define how to extract a JDBC Connection from a Connection Pool.</li>
  * <li>Define with <code>login</code> method if a client username and password
  * are allowed for connection.</li>
- * <li>Define the directories where the Blobs/Clobs are located for upload &
- * download.</li>
+ * <li>Define the directories where the Blobs/Clobs are located for upload and download.</li>
  * <li>Define some Java code to execute before/after a
  * <code>Connection.close()</code>.
  * <li>Define the maximum number of rows that may be returned to the
@@ -161,9 +160,11 @@ public interface DatabaseConfigurator {
      *
      * @param username
      *            the client username
-     * @return the Blob/Clob upload & download directory for this username
+     * @return the Blob/Clob upload and download directory for this username
      * @throws IOException
      *             if an IOException occurs
+     * @throws SQLException
+     *             if a SQLException occurs
      */
     public File getBlobsDirectory(String username)
 	    throws IOException, SQLException;

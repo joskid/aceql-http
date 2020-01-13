@@ -36,7 +36,7 @@ import org.kawanfw.sql.api.server.DefaultDatabaseConfigurator;
 /**
  * Default firewall manager for all SQL databases. <br>
  * <br>
- * <b><font color="red">WARNING</b></font>: This default implementation will
+ * <b>WARNING</b>: This default implementation will
  * allow to start immediate remote SQL calls but is <b>*not*</b> at all secured.
  * <br>
  * <b>It is highly recommended to override this class with a secured

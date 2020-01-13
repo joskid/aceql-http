@@ -42,7 +42,6 @@ import net.sf.jsqlparser.statement.Statement;
  * mainly for security reasons. <br>
  * <br>
  * Analysis methods include:
- * <p>
  * <ul>
  * <li>Says if a parsedStatement contains SQL comments.</li>
  * <li>Says if a parsedStatement contains semicolons (parsedStatement separator) that are
