@@ -33,26 +33,26 @@ import org.kawanfw.sql.api.server.StatementAnalyzer;
 
 /**
  * Firewall manager that denies any DCL (Data Control Language) call.
+ *
  * @author Nicolas de Pomereu
  *
  */
 public class DenyDclManager extends DefaultSqlFirewallManager implements SqlFirewallManager {
 
     /**
-     * @return <code><b>false</b></code> if the SQL statement is DCL (Data Control Language).
+     * @return <code><b>false</b></code> if the SQL statement is DCL (Data Control
+     *         Language).
      */
     @Override
     public boolean allowSqlRunAfterAnalysis(String username, String database, Connection connection, String ipAddress,
 	    String sql, boolean isPreparedStatement, List<Object> parameterValues) throws IOException, SQLException {
 	StatementAnalyzer statementAnalyzer = new StatementAnalyzer(sql, parameterValues);
 
-	if ( statementAnalyzer.isDcl()) {
+	if (statementAnalyzer.isDcl()) {
 	    return false;
-	}
-	else {
+	} else {
 	    return true;
 	}
     }
-
 
 }

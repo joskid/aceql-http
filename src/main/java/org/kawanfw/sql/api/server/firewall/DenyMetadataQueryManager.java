@@ -41,7 +41,8 @@ public class DenyMetadataQueryManager extends DefaultSqlFirewallManager implemen
      *         call the Metadata Query API).
      */
     @Override
-    public boolean allowMetadataQuery(String username, String database, Connection connection) throws IOException, SQLException {
+    public boolean allowMetadataQuery(String username, String database, Connection connection)
+	    throws IOException, SQLException {
 	return false;
     }
 }

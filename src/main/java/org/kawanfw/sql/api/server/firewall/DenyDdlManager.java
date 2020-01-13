@@ -34,26 +34,26 @@ import org.kawanfw.sql.api.server.StatementAnalyzer;
 
 /**
  * Firewall manager that denies any DDL (Data Definition Language) call.
+ *
  * @author Nicolas de Pomereu
  *
  */
 public class DenyDdlManager extends DefaultSqlFirewallManager implements SqlFirewallManager {
 
     /**
-     * @return <code><b>false</b></code> if the SQL statement is DDL (Data Definition Language).
+     * @return <code><b>false</b></code> if the SQL statement is DDL (Data
+     *         Definition Language).
      */
     @Override
     public boolean allowSqlRunAfterAnalysis(String username, String database, Connection connection, String ipAddress,
 	    String sql, boolean isPreparedStatement, List<Object> parameterValues) throws IOException, SQLException {
 	StatementAnalyzer statementAnalyzer = new StatementAnalyzer(sql, parameterValues);
 
-	if ( statementAnalyzer.isDdl()) {
+	if (statementAnalyzer.isDdl()) {
 	    return false;
-	}
-	else {
+	} else {
 	    return true;
 	}
     }
-
 
 }
