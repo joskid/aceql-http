@@ -38,25 +38,27 @@ import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
 
 /**
- * Class that allows the analysis of the string content of a SQL parsedStatement,
+ * Class that allows the analysis of the string content of a SQL statement,
  * mainly for security reasons. <br>
  * <br>
  * Analysis methods include:
  * <ul>
- * <li>Says if a parsedStatement contains SQL comments.</li>
- * <li>Says if a parsedStatement contains semicolons (parsedStatement separator) that are
+ * <li>Says if a statement contains SQL comments.</li>
+ * <li>Says if a statement contains semicolons (statement separator) that are
  * not trailing.</li>
- * <li>Extract the parsed Statement name:
+ * <li>Extract the parsed statement name:&nbsp;
  * <code>DELETE / INSERT / SELECT / UPDATE, CREATE / ALTER / DROP...</code></li>
- * <li>Says if the parsed Statement is a DML parsedStatement (exclusively:
- * <code>DELETE / INSERT / SELECT / UPDATE</code>).</li>
+ * <li>Says if the parsed statement is a DML (Data Management Language)
+ * statement.</li>
  * <li>Counts the number of parameters.</li>
  * <li>Methods to get the first, the last or any parameter.</li>
- * <li>Says if the parsed Statement is a DDL parsedStatement (exclusively:
- * <code>CREATE / ALTER / DROP / TRUNCATE / COMMENT / RENAME</code>).</li>
- * <li>Says if the parsed Statement is a DCL parsedStatement (exclusively:
- * <code>GRANT / REVOKE</code>).</li>
- * <li>Extract the table name in use for a DML parsedStatement;</li>
+ * <li>Says if the parsed Statement is a DDL (Data Definition Language)
+ * statement.</li>
+ * <li>Says if the parsed Statement is a DCL (Data Control Language)
+ * statement.</li>
+ * <li>Says if the parsed Statement is a TCL (Transaction Control Language)
+ * statement/</li>
+ * <li>Extract the table name in use in the statement.</li>
  * </ul>
  *
  * @author Nicolas de Pomereu
@@ -85,7 +87,7 @@ public class StatementAnalyzer {
     private boolean isDML = false;
     private boolean isTCL = false;
 
-    /** The underlying parsed/wrapped  parsedStatement */
+    /** The underlying parsed/wrapped parsedStatement */
     private Statement parsedStatement = null;
 
     /** if true, we could not say the parsed Statement type (DCL, DDL, DML, TCL) */
@@ -97,8 +99,8 @@ public class StatementAnalyzer {
      * Constructor.
      *
      * @param sql             the string content of the SQL parsedStatement.
-     * @param parameterValues the parameter values of a prepared parsedStatement in the
-     *                        natural order, empty list for a (non prepared)
+     * @param parameterValues the parameter values of a prepared parsedStatement in
+     *                        the natural order, empty list for a (non prepared)
      *                        parsedStatement
      * @throws SQLException if the parsed Statement can not be parsed
      */
@@ -118,7 +120,8 @@ public class StatementAnalyzer {
 	this.tables = new ArrayList<>();
 	String theStatementName = StringUtils.substringBefore(sql, BLANK);
 
-	// Can not treat GRANT, REVOKE or ROLLBACK here, not supported by CCJSqlParserUtil
+	// Can not treat GRANT, REVOKE or ROLLBACK here, not supported by
+	// CCJSqlParserUtil
 	if (theStatementName.equalsIgnoreCase("GRANT")) {
 	    this.statementName = "GRANT";
 	    this.isDCL = true;
@@ -127,18 +130,15 @@ public class StatementAnalyzer {
 	    this.statementName = "REVOKE";
 	    this.isDCL = true;
 	    this.tables = new ArrayList<>();
-	}
-	else if (theStatementName.equalsIgnoreCase("ROLLBACK")) {
+	} else if (theStatementName.equalsIgnoreCase("ROLLBACK")) {
 	    this.statementName = "ROLLBACK";
 	    this.isTCL = true;
 	    this.tables = new ArrayList<>();
-	}
-	else if (theStatementName.equalsIgnoreCase("DROP")) {
+	} else if (theStatementName.equalsIgnoreCase("DROP")) {
 	    this.statementName = "DROP";
 	    this.isDDL = true;
 	    this.tables = new ArrayList<>();
-	}
-	else {
+	} else {
 	    parsedStatement = null;
 	    try {
 		parsedStatement = CCJSqlParserUtil.parse(sql);
@@ -171,20 +171,20 @@ public class StatementAnalyzer {
 	this.parameterValues = parameterValues;
     }
 
-
     /**
-     * Returns the statement parsed with JSQLParser
+     * Returns the statement parsed with JSQLParser.
+     *
      * @return statement parsed with JSQLParser
      */
     public Statement getParsedStatement() {
-        return parsedStatement;
+	return parsedStatement;
     }
 
     /**
-     * Says if a parsedStatement contains semicolons (';') that are not trailing. Use this
+     * Says if a statement contains semicolons (';') that are not trailing. Use this
      * to prevent attacks when a parsedStatement is multi-statements.
      *
-     * @return true if the SQL parsedStatement contains semicolons that are not trailing.
+     * @return true if the SQL statement contains semicolons that are not trailing.
      */
     public boolean isWithSemicolons() {
 	String localSql = sql;
@@ -209,7 +209,7 @@ public class StatementAnalyzer {
     }
 
     /**
-     * Says if a parsedStatement contains SQL comments.
+     * Says if a statement contains SQL comments.
      *
      * @return true if the SQL parsedStatement contains SQL comments
      */
@@ -219,9 +219,9 @@ public class StatementAnalyzer {
     }
 
     /**
-     * Extract the parsed Statement name from a SQL order.
+     * Extracts the statement name from a SQL order.
      *
-     * @return the parsed Statement name: <code>DELETE, INSERT, SELECT, UPDATE,</code>
+     * @return the statement name: <code>DELETE, INSERT, SELECT, UPDATE,</code>
      *         etc...
      */
     public String getStatementName() {
@@ -229,7 +229,7 @@ public class StatementAnalyzer {
     }
 
     /**
-     * Says a parsedStatement is a parsedStatement of certain type.
+     * Says a if a statement is a statement of certain type.
      *
      * @param statementTypeToMatch the parsed Statement type to match: DELETE / ...
      * @return true if the parsed Statement type is matched.
@@ -251,7 +251,7 @@ public class StatementAnalyzer {
     }
 
     /**
-     * Says if the parsed Statement is a <code>DELETE</code>.
+     * Says if the statement is a <code>DELETE</code>.
      *
      * @return true if the parsed Statement is a <code>DELETE</code>
      */
@@ -260,7 +260,7 @@ public class StatementAnalyzer {
     }
 
     /**
-     * Says if the parsed Statement is an <code>INSERT</code>.
+     * Says if the statement is an <code>INSERT</code>.
      *
      * @return true if the parsed Statement is an <code>INSERT</code>
      */
@@ -269,7 +269,7 @@ public class StatementAnalyzer {
     }
 
     /**
-     * Says if the parsed Statement is a <code>SELECT</code>.
+     * Says if the statement is a <code>SELECT</code>.
      *
      * @return true if the parsed Statement is a <code>SELECT</code>
      */
@@ -278,7 +278,7 @@ public class StatementAnalyzer {
     }
 
     /**
-     * Says if the parsed Statement is an <code>UPDATE</code>.
+     * Says if the statement is an <code>UPDATE</code>.
      *
      * @return true if the parsed Statement is an <code>UPDATE</code>
      */
@@ -287,9 +287,9 @@ public class StatementAnalyzer {
     }
 
     /**
-     * Returns the number of parameters in the parsed Statement
+     * Returns the number of parameters in the statement.
      *
-     * @return the number of parameters in the parsed Statement
+     * @return the number of parameters in the statement
      */
     public int getParameterCount() {
 	return parameterValues.size();
@@ -346,7 +346,8 @@ public class StatementAnalyzer {
     }
 
     /**
-     * Says if the parsed Statement is a DML (Data Manipulation Language) parsedStatement.
+     * Says if the statement is a DML (Data Manipulation Language) parsedStatement.
+     *
      * @return true if the parsed Statement is DML parsedStatement
      */
     public boolean isDml() {
@@ -354,7 +355,8 @@ public class StatementAnalyzer {
     }
 
     /**
-     * Says if the parsed Statement is a DCL (Data Control Language) parsedStatement
+     * Says if the statement is a DCL (Data Control Language) parsedStatement
+     *
      * @return true if the parsed Statement is DCL parsedStatement
      */
     public boolean isDcl() {
@@ -362,7 +364,8 @@ public class StatementAnalyzer {
     }
 
     /**
-     * Says if the parsed Statement is a DDL (Data Definition Language) parsedStatement.
+     * Says if the Statement is a DDL (Data Definition Language) parsedStatement.
+     *
      * @return true if the parsed Statement is DDL parsedStatement
      */
     public boolean isDdl() {
@@ -370,7 +373,9 @@ public class StatementAnalyzer {
     }
 
     /**
-     * Says if the parsed Statement is a TCL (Transaction Control Language) parsedStatement.
+     * Says if the statement is a TCL (Transaction Control Language)
+     * parsedStatement.
+     *
      * @return true if the parsed Statement is DDL parsedStatement
      */
     public boolean isTcl() {
@@ -378,30 +383,37 @@ public class StatementAnalyzer {
     }
 
     /**
-     * Returns the list of tables in the parsed Statement. Returns an empty list if no tables found.
-     * @return the list of tables in the parsed Statement.
+     * Returns the list of tables in the statement. Returns an empty list if no
+     * tables found.
+     *
+     * @return the list of tables in the statement.
      */
     public List<String> getTables() {
-        return tables;
+	return tables;
     }
 
     /**
-     * Says if the parsed Statement type (DDL, DML, DCL, TCL) could not be parsed
+     * Says if the statement type (DDL, DML, DCL, TCL) could not be parsed
+     *
      * @return true if the parsed Statement type could no be parsed.
      */
     public boolean isStatementTypeNotParsed() {
-        return statementTypeNotParsed;
-    }
-
-
-    public SQLException getParseException() {
-        return parseException;
+	return statementTypeNotParsed;
     }
 
     /**
-     * Returns the string content of the SQL parsed Statement.
+     * Returns the parse Exception if any.
      *
-     * @return the string content of the SQL parsed Statement
+     * @return the parse Exception. null if none.
+     */
+    public SQLException getParseException() {
+	return parseException;
+    }
+
+    /**
+     * Returns the string content of the SQL statement.
+     *
+     * @return the string content of the SQL statement
      */
     public String getSql() {
 	return this.sql;
