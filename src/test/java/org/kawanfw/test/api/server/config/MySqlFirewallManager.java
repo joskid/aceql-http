@@ -51,8 +51,11 @@ public class MySqlFirewallManager extends DefaultSqlFirewallManager {
      *
      * @param username
      *            the client username to check the rule for.
+     * @param database
+     *            the database name as defined in the JDBC URL field
      * @param connection
      *            The current SQL/JDBC <code>Connection</code>
+     *            the database name as defined in the JDBC URL field
      * @param ipAddress
      *            the IP address of the client user
      * @param isPreparedStatement
@@ -85,8 +88,10 @@ public class MySqlFirewallManager extends DefaultSqlFirewallManager {
      *             if a SQLException occurs
      */
     @Override
-    public boolean allowSqlRunAfterAnalysis(String username, String database, Connection connection, String ipAddress,
-	    String sql, boolean isPreparedStatement, List<Object> parameterValues) throws IOException, SQLException {
+    public boolean allowSqlRunAfterAnalysis(String username, String database,
+	    Connection connection, String ipAddress,
+	    String sql, boolean isPreparedStatement, List<Object> parameterValues)
+		    throws IOException, SQLException {
 
 	// First thing is to test if the username has previously been stored in
 	// our applicative BANNED_USERNAME table
@@ -165,6 +170,8 @@ public class MySqlFirewallManager extends DefaultSqlFirewallManager {
      *
      * @param username
      *            the discarded client username
+     * @param database
+     *            the database name as defined in the JDBC URL field
      * @param connection
      *            The current SQL/JDBC <code>Connection</code>
      * @param ipAddress
@@ -188,8 +195,8 @@ public class MySqlFirewallManager extends DefaultSqlFirewallManager {
 		    throws IOException, SQLException {
 
 	// Call the parent method that logs the event:
-	super.runIfStatementRefused(username, database, connection, ipAddress, isMetadataQuery, sql,
-		parameterValues);
+	super.runIfStatementRefused(username, database, connection, ipAddress,
+		isMetadataQuery, sql, parameterValues);
 
 	System.err.println("Statement refused by MySqlFirewallManager: " + sql);
 
@@ -202,7 +209,7 @@ public class MySqlFirewallManager extends DefaultSqlFirewallManager {
 	    prepStatement.executeUpdate();
 	} catch (SQLException e) {
 	    // Case the instance already exists
-	    System.out.println(e.toString());
+	    System.out.println("Ignore: " + e.toString());
 	}
 	prepStatement.close();
 

@@ -611,7 +611,7 @@ It will display a JSON string and should display a status of `"OK"` and the curr
 ```json
 {                                            
   "status":"OK",                           
-  "version":"AceQL HTTP v4.0 – 23-arp-2019"
+  "version":"AceQL HTTP v4.0 – 13-Jan-2019"
 }         
 ```
 
@@ -827,6 +827,8 @@ Create a `MySqlConfigurator` class that extends `DefaultSqlConfigurator` and imp
      * 
      * @param username
      *            the client username to check the rule for.
+     * @param database
+     *            the database name as defined in the JDBC URL field
      * @param connection
      *            The current SQL/JDBC <code>Connection</code>
      * @param ipAddress
@@ -861,10 +863,10 @@ Create a `MySqlConfigurator` class that extends `DefaultSqlConfigurator` and imp
      *             if a SQLException occurs
      */
     @Override
-    public boolean allowSqlRunAfterAnalysis(String username,
-	    Connection connection, String ipAddress, String sql,
-	    boolean isPreparedStatement, List<Object> parameterValues)
-	    throws IOException, SQLException {
+    public boolean allowSqlRunAfterAnalysis(String username, String database,
+	    Connection connection, String ipAddress,
+	    String sql, boolean isPreparedStatement, List<Object> parameterValues)
+		    throws IOException, SQLException {
 
 	// First thing is to test if the username has previously been stored in
 	// our applicative BANNED_USERNAME table
@@ -907,13 +909,16 @@ Create a `MySqlConfigurator` class that extends `DefaultSqlConfigurator` and imp
 	// USERNAME value is the last parameter of the PreparedStatement
 
 	if (statementAnalyzer.isUpdate() || statementAnalyzer.isDelete()) {
-	    String table = statementAnalyzer.getTableNameFromDmlStatement();
-	    if (table == null) {
-		return false;
+
+	    List<String> tables = statementAnalyzer.getTables();
+	    if (tables.isEmpty()) {
+			return false;
 	    }
 
+	    String table = tables.get(0);
+
 	    if (!isPreparedStatement) {
-		return false;
+			return false;
 	    }
 
 	    if (table.equalsIgnoreCase("USER_LOGIN")
@@ -923,15 +928,14 @@ Create a `MySqlConfigurator` class that extends `DefaultSqlConfigurator` and imp
 		lastParamValue = statementAnalyzer.getLastParameter()
 			.toString();
 
-		if (!lastParamValue.equals(username)) {
-		    return false;
-		}
+            if (!lastParamValue.equals(username)) {
+                return false;
+            }
 	    }
 	}
 
 	// OK, accept the statement!
 	return true;
-  }
 ```
 
  We can now implement `runIfStatementRefused`:
@@ -944,6 +948,8 @@ Create a `MySqlConfigurator` class that extends `DefaultSqlConfigurator` and imp
      * 
      * @param username
      *            the discarded client username
+     * @param database
+     *            the database name as defined in the JDBC URL field
      * @param connection
      *            The current SQL/JDBC <code>Connection</code>
      * @param ipAddress
@@ -959,30 +965,32 @@ Create a `MySqlConfigurator` class that extends `DefaultSqlConfigurator` and imp
      * @throws SQLException
      *             if a SQLException occurs
      */
-    @Override
-    public void runIfStatementRefused(String username, Connection connection,
-	    String ipAddress, String sql, List<Object> parameterValues)
-	    throws IOException, SQLException {
+@Override
+    public void runIfStatementRefused(String username, String database,
+	    Connection connection, String ipAddress,
+	    boolean isMetadataQuery, String sql, List<Object> parameterValues)
+		    throws IOException, SQLException {
 
 	// Call the parent method that logs the event:
-	super.runIfStatementRefused(username, connection, ipAddress, sql,
-		parameterValues);
+	super.runIfStatementRefused(username, database, connection, ipAddress,
+		isMetadataQuery, sql, parameterValues);
+
+	System.err.println("Statement refused by MySqlFirewallManager: " + sql);
 
 	// Insert the username & its IP into the banned usernames table
-	String sqlOrder = "INSERT INTO BANNED_USERNAMES VALUES (?, ?)";
+	String sqlOrder = "INSERT INTO BANNED_USERNAMES VALUES (?)";
 
 	PreparedStatement prepStatement = connection.prepareStatement(sqlOrder);
 	prepStatement.setString(1, username);
-	prepStatement.setString(2, ipAddress);
 	try {
 	    prepStatement.executeUpdate();
 	} catch (SQLException e) {
 	    // Case the instance already exists
-	    System.err.println(e.toString());
+	    System.out.println("Ignore: " + e.toString());
 	}
 	prepStatement.close();
 
- }
+    }
 ```
 
 ### Passing concrete SqlFirewallManager classes

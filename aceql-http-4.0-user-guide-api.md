@@ -4,8 +4,6 @@
 
 <img src="https://www.aceql.com/favicon.png" alt="AceQL HTTP Icon"/> 
 
-* [AceQL HTTP v4.0 - January 10, 2020](#aceql-http-v40---january-10-2020)
-   * [API User Guide](#api-user-guide)
    * [Using the API](#using-the-api)
       * [Java, C#, Swift and Python SDK](#java-c-swift-and-python-sdk)
       * [Authentication &amp; session creation](#authentication--session-creation)
