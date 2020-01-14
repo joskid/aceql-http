@@ -12,7 +12,6 @@ import org.apache.commons.lang3.SystemUtils;
 import org.kawanfw.sql.metadata.sc.info.AceQLOutputFormat;
 import org.kawanfw.sql.metadata.sc.info.SchemaInfoAccessor;
 import org.kawanfw.sql.metadata.sc.info.SchemaInfoSC;
-import org.kawanfw.sql.util.IpUtil;
 import org.kawanfw.test.sql.metadata.aceql.ConnectionParms;
 
 /**
@@ -21,8 +20,6 @@ import org.kawanfw.test.sql.metadata.aceql.ConnectionParms;
  */
 public class App {
     public static void main(String[] args) throws Exception {
-
-	System.out.println(IpUtil.isIpAddressInRange("74.125.227.0/25","74.125.227.0"));
 
 	boolean doReturn = true;
 	if (doReturn) return;

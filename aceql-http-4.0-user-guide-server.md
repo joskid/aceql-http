@@ -1,4 +1,4 @@
-# AceQL HTTP v4.0   - January 13,  2020
+# AceQL HTTP v4.0   - January 14,  2020
 
 # Server Installation and Configuration Guide  
 
@@ -205,7 +205,7 @@ Call the `aceql-server` script to display the AceQL version:
 It will display a line with all version info, like:
 
 ```
-AceQL HTTP Community v4.0 - 13-Jan-2020
+AceQL HTTP Community v4.0 - 14-Jan-2020
 ```
 
 
@@ -296,12 +296,12 @@ databases = my_database1, my_database2
 
 Only the following four properties must be defined per database name if you want to use the Tomcat JDBC Connection Pool: 
 
-| **Property**    | **Value**                                |
-| --------------- | ---------------------------------------- |
-| driverClassName | The fully qualified Java class name of the JDBC driver to be used. |
-| url             | The  connection URL to be passed to our JDBC driver to establish a connection. |
-| username        | The  connection username to be passed to our JDBC driver to establish a  connection. |
-| password        | The  connection password to be passed to our JDBC driver to establish a  connection. |
+| **Property**      | **Value**                                                    |
+| ----------------- | ------------------------------------------------------------ |
+| `driverClassName` | The fully qualified Java class name of the JDBC driver to be used. |
+| `url`             | The  connection URL to be passed to our JDBC driver to establish a connection. |
+| `username`        | The  connection username to be passed to our JDBC driver to establish a  connection. |
+| `password`        | The  connection password to be passed to our JDBC driver to establish a  connection. |
 
 Each property must be prefixed with the associated database name defined in databases property and a dot.
 
@@ -391,12 +391,12 @@ To define SSL HTTP Connector attribute values, refer to the Tomcat 8.5 [SSL Supp
 
 The following properties are mandatory and must be defined:
 
-| **Mandatory Property Name** | **Property Role**                        |
-| --------------------------- | ---------------------------------------- |
-| sslConnector.scheme         | Scheme to  use. Must be set to "https"   |
-| sslConnector.keystoreFile   | The file  containing the SSL/TLS certificates |
-| sslConnector.keystorePass   | The keystore  password                   |
-| sslConnector.keyPass        | The certificate  password                |
+| **Mandatory Property Name** | **Property Role**                             |
+| --------------------------- | --------------------------------------------- |
+| `sslConnector.scheme`       | Scheme to  use. Must be set to "https"        |
+| `sslConnector.keystoreFile` | The file  containing the SSL/TLS certificates |
+| `sslConnector.keystorePass` | The keystore  password                        |
+| `sslConnector.keyPass`      | The certificate  password                     |
 
 To create an SSL Certificate, refer to:
 
@@ -611,7 +611,7 @@ It will display a JSON string and should display a status of `"OK"` and the curr
 ```json
 {                                            
   "status":"OK",                           
-  "version":"AceQL HTTP v4.0 – 13-Jan-2019"
+  "version":"AceQL HTTP v4.0 – 14-Jan-2019"
 }         
 ```
 
@@ -727,9 +727,9 @@ The following example checks that the username and password entered by the clien
 	    String hashPassword = null;
 
 	    try {
-		hashPassword = SimpleSha1.sha1(new String(password), true);
+			hashPassword = SimpleSha1.sha1(new String(password), true);
 	    } catch (Exception e) {
-		throw new IOException("Unexpected Sha1 failure", e);
+			throw new IOException("Unexpected Sha1 failure", e);
 	    }
 
 	    // Check (username, password) existence in user_login table
@@ -743,8 +743,7 @@ The following example checks that the username and password entered by the clien
 
 	    boolean ok = false;
 	    if (rs.next()) {
-
-		ok = true; // Yes! (username, password) are authenticated
+			ok = true; // Yes! (username, password) are authenticated
 	    }
 
 	    prepStatement.close();
@@ -792,17 +791,17 @@ A good dual defense strategy would be:
 
 ####  The SqlFirewallManager interface SQL security methods 
 
-The SQL security settings are coded in a concrete implementation of the [SqlFirewallManager](http://www.aceql.com/rest/soft/4.0/javadoc/org/kawanfw/sql/api/server/firewal/SqlFirewallManager.html) interface with the following methods:
+The SQL security settings are coded in a concrete implementation of the [SqlFirewallManager](http://www.aceql.com/rest/soft/4.0/javadoc/org/kawanfw/sql/api/server/firewall/SqlFirewallManager.html) interface with the following methods:
 
-| **Method**               | **Role**                                                     |
-| ------------------------ | ------------------------------------------------------------ |
-| allowExecuteUpdate       | Defines if a client user has the right to  call a statement that updates the database. |
-| allowMetadataQuery       | Defines if a client if a client user has the right to  call the Metadata Query API. See |
-| allowStatementClass      | Defines if a client user has the right to  call a raw `Statement` that is not a `PreparedStatement`. |
-| allowSqlRunAfterAnalysis | Defines a specific piece of Java code to get  the caller username and IP address and analyze the source code of the SQL statement before allowing or disallowing its execution. |
-| runIfStatementRefused    | Executes a specific piece of Java code if an  SQL statement is not allowed. |
+| **Method**                 | **Role**                                                     |
+| -------------------------- | ------------------------------------------------------------ |
+| `allowExecuteUpdate`       | Defines if a client user has the right to  call a statement that updates the database. |
+| `allowMetadataQuery`       | Defines if a client if a client user has the right to  call the Metadata Query API. (See the [API User Guide](https://github.com/kawansoft/aceql-http/blob/master/aceql-http-4.0-user-guide-api.md)). |
+| `allowStatementClass`      | Defines if a client user has the right to  call a raw `Statement` that is not a `PreparedStatement`. |
+| `allowSqlRunAfterAnalysis` | Defines a specific piece of Java code to get  the caller username and IP address and analyze the source code of the SQL statement before allowing or disallowing its execution. |
+| `runIfStatementRefused`    | Executes a specific piece of Java code if an  SQL statement is not allowed. |
 
-AceQL default implementation ([DefaultSqlFirewallManager](http://www.aceql.com/rest/soft/4.0/javadoc/org/kawanfw/sql/api/server/firewal/DefaultSqlFirewallManager.html) ) has minimal restrictions and should *not* be used in production code. It allows *all* SQL code execution.
+AceQL default implementation ([DefaultSqlFirewallManager](http://www.aceql.com/rest/soft/4.0/javadoc/org/kawanfw/sql/api/server/firewall/DefaultSqlFirewallManager.html) ) has minimal restrictions and should *not* be used in production code. It allows *all* SQL code execution.
 
 For example, assume that you want more security in your own `DatabaseConfigurator` implementation that defines these requirements: 
 
@@ -1004,6 +1003,26 @@ Your concrete implementations are passed to the AceQL as properties of the SQL F
 If you don’t provide a parameter for a `SqlFirewallManager` , AceQL will use the `DefaultSqlFirewallManager`  (which is already in the CLASSPATH).
 
  Instances are loaded using a non-args constructor.
+
+### Chaining SqlFirewallManager  classes
+
+[SqlFirewallManager](http://www.aceql.com/rest/soft/4.0/javadoc/org/kawanfw/sql/api/server/firewall/SqlFirewallManager.html) may be chained when declared in `aceql-server.properties` configuration file.
+
+If SqlFirewallManager classes are chained, an `AND` condition is applied to all the SqlFirewallManager execution conditions in order to compute final allow decision. For example, the `allowExecuteUpdate(`) of each chained SqlFirewallManager  instance must return `true` in order to allow updates of the database.
+
+The `org.kawanfw.sql.api.server.firewall` package contains several ready to use SqlFirewallManager that can be used without any coding or changes.
+
+For example, the following settings will chain two built-in SqlFirewallManager classes:
+
+ - First class `DenyExecuteUpdateManager` will deny at runtime the write access to the database,
+ - Second class `DenyDdlManager` will deny at runtime to pass DDL statements such as
+    `DROP, CREATE TABLE,` etc.
+
+```properties
+kawansoft_example.sqlFirewallManagerClassNames=\
+     org.kawanfw.sql.api.server.firewall.DenyExecuteUpdateManager,\
+     org.kawanfw.sql.api.server.firewall.DenyDdlManager
+```
 
 # Session management and security 
 
