@@ -1,4 +1,4 @@
-# AceQL HTTP v4.0 - January 2020, 13
+# AceQL HTTP v4.0 - January 2020, 15
 
 # Quick Start Guide
 
@@ -96,7 +96,7 @@ $ aceql-server -version
 It will display a line with all version info, like:
 
 ```
-AceQL HTTP Community v4.0 - 10-Jan-2020
+AceQL HTTP Community v4.0 - 15-Jan-2020
 ```
 
 ### Configure JDBC parameters in aceql-server.properties file
@@ -144,7 +144,7 @@ The console will display the properties used, test that the Connection is establ
 
 ```
 [ACEQL HTTP START] Starting AceQL HTTP Web Server...
-[ACEQL HTTP START] AceQL HTTP Community v4.0 - 16-Sep-2019
+[ACEQL HTTP START] AceQL HTTP Community v4.0 - 15-Jan-2020
 [ACEQL HTTP START] Using properties file:
 [ACEQL HTTP START]  -> /home/mike/aceql-http-4.0/conf/aceql-server.properties
 [ACEQL HTTP START] Setting System Properties:
@@ -186,7 +186,7 @@ We are now ready to send SQL requests from client side!
 
 ## Windows Installation & Server Startup 
 
-AceQL requires the installation of Java version 7+ (64-bit only).
+AceQL requires the installation of Java version 8+ (64-bit only).
 
 Because the software installs and runs a Windows Service, you must be logged as a Windows Administrator to install AceQL.
 
@@ -251,7 +251,7 @@ The console will display the properties used, test that the `Connection` is esta
 
 ```
 [ACEQL HTTP START] Starting AceQL HTTP Web Server...
-[ACEQL HTTP START] AceQL HTTP Community v4.0 - 10-Jan-2020
+[ACEQL HTTP START] AceQL HTTP Community v4.0 - 15-Jan-2020
 [ACEQL HTTP START] Using properties file:
 [ACEQL HTTP START]  -> c:\.aceql-http\conf\aceql-server.properties
 [ACEQL HTTP START] Setting System Properties:

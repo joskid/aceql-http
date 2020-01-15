@@ -1,4 +1,4 @@
-# AceQL HTTP v4.0   - January 14,  2020
+# AceQL HTTP v4.0   - January 15,  2020
 
 # Server Installation and Configuration Guide  
 
@@ -611,7 +611,7 @@ It will display a JSON string and should display a status of `"OK"` and the curr
 ```json
 {                                            
   "status":"OK",                           
-  "version":"AceQL HTTP v4.0 – 14-Jan-2019"
+  "version":"AceQL HTTP v4.0 – 15-Jan-2019"
 }         
 ```
 
